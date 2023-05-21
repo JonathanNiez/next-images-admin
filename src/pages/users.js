@@ -27,16 +27,21 @@ export default function Users() {
       users.map(function (u, index) {
         return (
           <div
-            className="border-gray-300 hover:bg-gray-100 border h-auto w-96 p-2 rounded-xl m-2 shadow-md gird grid-rows-1"
+            className="border-gray-400 hover:bg-gray-200 border h-auto w-96 rounded-xl shadow-md p-3"
             key={index}
           >
-            <h1 className=" text-black text-center text-2xl font-bold">
+            <h1 className=" text-black text-center text-lg font-bold">
               UserID: {u.userID}
             </h1>
-            <h1 className="text-black text-lg">Username: {u.username}</h1>
+            <h1 className="text-black text-center text-lg">
+              Username: {u.username}
+            </h1>
             <h1 className=" text-black text-center text-lg">
               Email: {u.email}
             </h1>
+            <button className="bg-red-400 hover:bg-red-600 p-2 text-center  rounded-md">
+              Delete
+            </button>
           </div>
         );
       })
@@ -47,8 +52,7 @@ export default function Users() {
     <div>
       <NavBar />
 
-      <div className="p-2 bg-gray-200 grid gap-10 grid-cols-6 h-auto place-items-center justify-center">
-        {" "}
+      <div className="grid gap-4 grid-cols-4 h-full place-items-center justify-center">
         {loadUsers()}
       </div>
       <Footer />

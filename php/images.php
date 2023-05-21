@@ -1,12 +1,11 @@
 <?php
 require 'connect.php';
-
 header("Access-Control-Allow-Origin *");
-header('Content-type: application/json');
+header('Content-type: application/json, image/jpeg');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
-$sql = "SELECT * FROM movies";
+$sql = "SELECT * FROM images";
 $result = mysqli_query($conn, $sql);
 
 $id = "";
