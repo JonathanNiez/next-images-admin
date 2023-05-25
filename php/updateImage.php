@@ -11,18 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $error = mysqli_error($conn);
 
   $ImageID = $data["imageID"];
+  $ImageName = $data["imageName"];
 
   $DeleteImageSQL =
-    "DELETE FROM images WHERE imageID = '$ImageID'";
+    "UPDATE images SET imageName = '$ImageName' WHERE imageID = '$ImageID'";
   $DeleteImageQuery = mysqli_query($conn, $DeleteImageSQL);
 
   if ($DeleteImageQuery) {
     http_response_code(201);
 
-    echo "Image Deleted Successfully \n" . $DeleteImageQuery;
+    echo "Image Updated Successfully \n" . $DeleteImageQuery;
   } else {
     http_response_code(422);
 
-    echo "Image Failed to Delete \n" . $error;
+    echo "Image Failed to Update \n" . $error;
   }
 }

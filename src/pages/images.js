@@ -3,7 +3,7 @@ import axios from "axios";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useRouter } from "next/router";
-import DeleteImage from "./deleteImage";
+import DeleteImage from "./viewImage";
 
 export default function Movies() {
   const [image, setImage] = useState([]);
@@ -19,7 +19,7 @@ export default function Movies() {
     };
 
     router.push({
-      pathname: "/deleteImage",
+      pathname: "/viewImage",
       query: imageQuery,
     });
   }
@@ -45,7 +45,7 @@ export default function Movies() {
       image.map(function (i, index) {
         return (
           <div
-            className="bg-gray-100 hover:bg-gray-200 w-80 h-fit border-gray-300  border-2 m-2 p-2 rounded-xl  shadow-md grid place-items-center"
+            className="bg-gray-100 hover:bg-gray-200 w-80 h-fit border-gray-300  border-2 m-2 p-2 rounded-xl shadow-md grid place-items-center"
             key={index}
           >
             <h1 className="text-black text-center text-1xl font-bold">
@@ -63,10 +63,10 @@ export default function Movies() {
               Uploaded On: {i.uploadDate}
             </h1>
             <button
-              className="bg-red-400 hover:bg-red-600 p-2 text-center rounded-md"
+              className="bg-blue-400 w-full hover:bg-blue-600 p-2 text-center rounded-md mr-3"
               onClick={() => handleButtonClick(i)}
             >
-              Delete
+              View
             </button>
           </div>
         );

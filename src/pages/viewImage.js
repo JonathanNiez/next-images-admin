@@ -11,18 +11,27 @@ export default function DeleteImage() {
   const { imageID, imageName, imageData, uploadDate } = router.query;
 
   useEffect(() => {
-    console.log("Image ID: " + imageID);
+    console.log(router.query);
   });
 
   async function handleSubmit(e) {
     e.preventDefault();
+    // try {
+    //   const response = await axios.delete(
+    //     "http://localhost/next-movies-admin/php/deleteImage.php",
+    //     imageID
+    //   );
+    //   router.push("/images");
+    //   console.error(response.data);
+    // } catch (error) {
+    //   console.error(error);
+    //   router.push("/deleteImage");
+    // }
+
     try {
-      const response = await axios.delete(
-        "http://localhost/next-movies-admin/php/deleteImage.php",
-        imageID
-      );
+      const response = await deleteImageFromDB(imageID);
+      console.log(response);
       router.push("/images");
-      console.error(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -44,9 +53,18 @@ export default function DeleteImage() {
     <div>
       <NavBar />
       <div className="flex items-center justify-center">
-        <Link href="/images" className="text-2xl bg-gray-300 p-2 rounded-md">
-          ◀ Back
-        </Link>
+        <div className="grid grid-row-2 gap-2">
+          <Link
+            href="/images"
+            className="text-2xl bg-gray-300 hover:bg-gray-500 p-2 rounded-md"
+          >
+            ◀ Back
+          </Link>
+          <button className="bg-red-200 hover:bg-red-400 p-2 text-center rounded-md">
+            Report
+          </button>
+        </div>
+
         <form
           method="post"
           onSubmit={handleSubmit}
@@ -70,19 +88,16 @@ export default function DeleteImage() {
             className="text-black text-center text-2xl border-gray-300 border-2 m-2"
             value={imageName}
             placeholder="Image Name"
-            readOnly
           />
           <input
             type="text"
             className="text-black text-center text-2xl border-gray-300 border-2 m-2"
             value={uploadDate}
             placeholder="Upload Date"
-            readOnly
           />
           <button
             type="submit"
-            className="bg-red-400 hover:bg-red-600 p-2 text-center rounded-md"
-            // onClick={deleteButtonClick}
+            className="bg-red-400 hover:bg-red-600 p-2 text-center rounded-md mr-2 w-24"
           >
             Delete
           </button>
